@@ -66,6 +66,14 @@ export class Task {
         task.priority = priority ?? task.priority;
 
         return task;
-       
     }
+
+    static delete(id: number): Task | null {
+        const task = this.findById(id);
+        if (!task) return null;
+
+        this.tasks = this.tasks.filter((task) => task.id !== id);
+        return task;
+    }
+
 }
