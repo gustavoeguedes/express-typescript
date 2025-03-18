@@ -64,6 +64,7 @@ export class Task {
         task.title = title ?? task.title;
         task.description = description ?? task.description;
         task.priority = priority ?? task.priority;
+        task.updatedAt = new Date();
 
         return task;
     }
