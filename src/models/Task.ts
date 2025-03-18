@@ -1,7 +1,7 @@
 interface TaskAttributes {
     id: number;
     title: string;
-    descripcion: string;
+    description: string;
     status: "todo" | "doing" | "done";
     priority: "low" | "medium" | "high";
     createdAt: Date;
@@ -15,7 +15,7 @@ export class Task {
 
     id: number;
     title: string;
-    descripcion: string;
+    description: string;
     status: "todo" | "doing" | "done";
     priority: "low" | "medium" | "high";
     createdAt: Date;
@@ -24,7 +24,7 @@ export class Task {
     constructor(atributes: TaskAttributes) {
         this.id = atributes.id;
         this.title = atributes.title;
-        this.descripcion = atributes.descripcion;
+        this.description = atributes.description;
         this.status = atributes.status;
         this.priority = atributes.priority;
         this.createdAt = atributes.createdAt;
@@ -40,11 +40,11 @@ export class Task {
     }
 
     static create(atributes: Omit<TaskAttributes, "id" | "createdAt" | "updatedAt">): Task {
-        const {title, descripcion, priority, status} = atributes;
+        const {title, description, priority, status} = atributes;
         const newTask = new Task({
             id: this.sequence,
             title,
-            descripcion,
+            description,
             status,
             priority,
             createdAt: new Date(),
@@ -57,12 +57,12 @@ export class Task {
     }
 
     static update(id: number, atributes: Partial<Omit<TaskAttributes, "id" | "createdAt" | "updatedAt">>): Task | null {
-        const {title, descripcion, priority, status} = atributes;
+        const {title, description, priority, status} = atributes;
         const task = this.findById(id);
         if (!task) return null;
 
         task.title = title ?? task.title;
-        task.descripcion = descripcion ?? task.descripcion;
+        task.description = description ?? task.description;
         task.priority = priority ?? task.priority;
 
         return task;
